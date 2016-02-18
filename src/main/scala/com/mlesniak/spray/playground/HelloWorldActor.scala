@@ -1,9 +1,20 @@
 package com.mlesniak.spray.playground
 
-import akka.actor.{Actor, ActorLogging}
+import java.util.Date
 
-class HelloWorldActor extends Actor with ActorLogging {
+import spray.routing._
+
+
+class HelloWorldActor extends HttpServiceActor {
   override def receive: Receive = {
-    case Name(name) => log.info("Hello, " + name)
+    runRoute(
+      route = path("") {
+        get {
+          complete {
+            "Hello, world. time=" + new Date()
+          }
+        }
+      }
+    )
   }
 }
