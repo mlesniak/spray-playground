@@ -15,7 +15,7 @@ object Boot extends App {
   implicit val system = ActorSystem("hello-spray")
 
   // Create a new actor.
-  val service = system.actorOf(Props(new HelloWorldActor))
+  val service = system.actorOf(Props(new RequestActor))
 
   // Maximal timeout for requests.
   implicit val timeout = Timeout(5.seconds)
