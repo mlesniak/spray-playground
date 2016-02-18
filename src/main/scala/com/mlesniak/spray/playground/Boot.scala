@@ -6,6 +6,7 @@ import akka.util.Timeout
 import spray.can.Http
 
 import scala.concurrent.duration._
+import scala.io.StdIn._
 
 
 
@@ -22,4 +23,8 @@ object Boot extends App {
   // Start a new HTTP server on port 8080 with our service actor as the handler.
   val serverBind = Http.Bind(service, interface = "localhost", port = 8080)
   IO(Http) ! serverBind
+
+  println("Hit any key to exit.")
+  val result = readLine()
+  system.terminate()
 }
