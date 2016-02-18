@@ -2,7 +2,7 @@ package com.mlesniak.spray.playground
 
 import akka.actor.{ActorSystem, Props}
 
-object Main extends App {
+object Boot extends App {
   // Define akka application.
   val system = ActorSystem("hello-akka")
 
