@@ -8,8 +8,6 @@ import spray.routing._
 
 class RequestActor extends HttpServiceActor with ActorLogging {
   override def receive: Receive = {
-    log.error("WTF")
-
     runRoute(
       route = path("") {
         get {
