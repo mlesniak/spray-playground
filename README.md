@@ -1,4 +1,6 @@
 Playground for different experiments with akka and spray.
 
-- serve static files
 - simple derby database?
+- some kind of ORM mapper?
+
+- ...and some frontend technology for the rest backend

@@ -1,0 +1,12 @@
+body {
+    padding: 50px;
+}
+
+h1 {
+    color: darkslategray;
+    border-bottom: solid 1px black;
+}
+
+.text {
+    text-align: justify;
+}

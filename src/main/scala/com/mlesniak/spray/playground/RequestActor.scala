@@ -8,14 +8,20 @@ import spray.routing._
 
 class RequestActor extends HttpServiceActor with ActorLogging {
   override def receive: Receive = {
-    runRoute(
-      route = path("") {
+    runRoute(route =
+      path("api" / "time") {
         get {
           complete {
-            "Hello, world. time=" + new Date()
+            new Date().toString
           }
         }
-      }
+      } ~
+        pathPrefix("") {
+          getFromResourceDirectory("public/")
+        } ~
+        path("") {
+          getFromResource("public/index.html")
+        }
     )
   }
 }
