@@ -3,28 +3,42 @@ package com.mlesniak.spray.playground
 import akka.actor.{ActorSystem, Props}
 import akka.io.IO
 import akka.util.Timeout
+import slick.driver.H2Driver.api._
 import spray.can.Http
 
+import scala.concurrent.Await
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.io.StdIn._
 
 
-
 object Boot extends App {
-  // Define akka application.
-  implicit val system = ActorSystem("hello-spray")
+  def startServer: Unit = {
+    implicit val system = ActorSystem("hello-spray")
+    val service = system.actorOf(Props(new RequestActor))
+    implicit val timeout = Timeout(5.seconds)
+    val serverBind = Http.Bind(service, interface = "localhost", port = 8080)
+    IO(Http) ! serverBind
 
-  // Create a new actor.
-  val service = system.actorOf(Props(new RequestActor))
+    // Wait for termination.
+    println("Hit any key to exit.")
+    val result = readLine()
+    system.terminate()
+  }
 
-  // Maximal timeout for requests.
-  implicit val timeout = Timeout(5.seconds)
 
-  // Start a new HTTP server on port 8080 with our service actor as the handler.
-  val serverBind = Http.Bind(service, interface = "localhost", port = 8080)
-  IO(Http) ! serverBind
+  // Database playground.
+  val db = Database.forConfig("h2mem")
+  val values = TableQuery[KeyValues]
 
-  println("Hit any key to exit.")
-  val result = readLine()
-  system.terminate()
+  val setupFuture = db.run(DBIO.seq(
+    values.schema.create,
+    values +=(100, "name", "Michael Lesniak")
+  ))
+  Await.ready(setupFuture, 1 second)
+
+  val result = db.run(values.result).map(_.foreach { x =>
+    println(x)
+  })
+  Await.ready(result, 1 second)
 }
