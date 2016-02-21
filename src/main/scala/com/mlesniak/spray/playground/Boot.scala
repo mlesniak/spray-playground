@@ -26,17 +26,18 @@ object Boot extends App {
     system.terminate()
   }
 
+  def executeDatabase: Unit = {
+    // Database playground.
+    val db = Database.forConfig("h2mem")
+    val values = TableQuery[KeyValues]
 
-  // Database playground.
-  val db = Database.forConfig("h2mem")
-  val values = TableQuery[KeyValues]
+    val setupFuture = db.run(DBIO.seq(
+      values.schema.create,
+      values +=(0, "name", "Michael Lesniak"),
+      values +=(0, "name", "Matthias Lesniak")
+    ))
+    Await.ready(setupFuture, 1 second)
 
-  val setupFuture = db.run(DBIO.seq(
-    values.schema.create,
-    values +=(0, "name", "Michael Lesniak"),
-    values +=(0, "name", "Matthias Lesniak")
-  ))
-  Await.ready(setupFuture, 1 second)
-
-  Await.result(db.run(values.result), 1 seconds).foreach(println)
+    Await.result(db.run(values.result), 1 seconds).foreach(println)
+  }
 }
