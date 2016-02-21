@@ -24,4 +24,4 @@ libraryDependencies ++= {
 
 // Enable jetty:{start,stop} commands.
 // See http://stackoverflow.com/questions/34404558/intellij-idea-and-sbt-syntax-error
-val _ = enablePlugins(JettyPlugin)
+enablePlugins(JettyPlugin)
