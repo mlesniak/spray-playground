@@ -1,11 +1,11 @@
-Playground for different experiments with akka and spray.
+## Playground for different experiments with akka and spray.
 
-- ...and some frontend technology for the rest backend
-- sbt "profile" to generate a war (deployment on HCP?)
-- HANA connectivity?
+- **multiple sbt build profiles**
+- HANA connectivity to persist data
+- Frontend technology in addition the rest backend
 
 
-sbt
+### sbt - commands
 
     jetty:{start,stop}
     package  -> .war
