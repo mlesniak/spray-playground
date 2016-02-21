@@ -7,7 +7,6 @@ import slick.driver.H2Driver.api._
 import spray.can.Http
 
 import scala.concurrent.Await
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.io.StdIn._
 import scala.language.postfixOps
@@ -39,8 +38,5 @@ object Boot extends App {
   ))
   Await.ready(setupFuture, 1 second)
 
-  val result = db.run(values.result).map(_.foreach { x =>
-    println(x)
-  })
-  Await.ready(result, 1 second)
+  Await.result(db.run(values.result), 1 seconds).foreach(println)
 }
