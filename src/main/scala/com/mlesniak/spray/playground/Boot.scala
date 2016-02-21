@@ -34,7 +34,8 @@ object Boot extends App {
 
   val setupFuture = db.run(DBIO.seq(
     values.schema.create,
-    values +=(100, "name", "Michael Lesniak")
+    values +=(0, "name", "Michael Lesniak"),
+    values +=(0, "name", "Matthias Lesniak")
   ))
   Await.ready(setupFuture, 1 second)
 
