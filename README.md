@@ -1,6 +1,6 @@
 ## Playground for different experiments with akka and spray.
 
-- **Docker build file**
+- Read more about best practices with Akka
 - Frontend technology in addition the rest backend
 
 ### Docker file
