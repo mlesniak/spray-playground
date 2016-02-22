@@ -40,4 +40,6 @@ object Boot extends App {
 
     Await.result(db.run(values.result), 1 seconds).foreach(println)
   }
+
+  startServer
 }
