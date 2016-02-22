@@ -11,7 +11,7 @@ Build with
     
 or start directly with    
 
-    docker run -d -P --name spray mlesniak/spray
+    docker run -d -p 8080:8080 --name spray mlesniak/spray
 
 Some notes for me
 
