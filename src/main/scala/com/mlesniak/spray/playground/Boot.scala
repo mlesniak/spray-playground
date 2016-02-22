@@ -21,9 +21,11 @@ object Boot extends App {
     IO(Http) ! serverBind
 
     // Wait for termination.
-    println("Hit any key to exit.")
-    val result = readLine()
-    system.terminate()
+    if (false) {
+      println("Hit any key to exit.")
+      val result = readLine()
+      system.terminate()
+    }
   }
 
   def executeDatabase: Unit = {

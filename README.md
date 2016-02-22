@@ -1,8 +1,25 @@
 ## Playground for different experiments with akka and spray.
 
-- **HANA connectivity to persist data**
+- **Docker build file**
 - Frontend technology in addition the rest backend
 
+### Docker file
+
+Build with
+
+    scripts/build-docker.sh
+    
+or start directly with    
+
+    docker run -d -P --name spray mlesniak/spray
+
+Some notes for me
+
+    docker tag
+    docker login
+    docker push mlesniak/spray
+    
+    
 
 ### Mulitple profiles
 
