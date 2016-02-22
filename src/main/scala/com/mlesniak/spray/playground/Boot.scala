@@ -17,7 +17,7 @@ object Boot extends App {
     implicit val system = ActorSystem("hello-spray")
     val service = system.actorOf(Props(new RequestActor))
     implicit val timeout = Timeout(5.seconds)
-    val serverBind = Http.Bind(service, interface = "127.0.0.1", port = 8080)
+    val serverBind = Http.Bind(service, interface = "0.0.0.0", port = 8080)
     IO(Http) ! serverBind
 
     // Wait for termination.
