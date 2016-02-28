@@ -10,20 +10,32 @@
 </head>
 <body ng-controller="MainCtrl">
 
-<h1>TODOs</h1>
+<h1>TODO</h1>
 
-<div ng-repeat="todo in todos">
-    <span ng-hide="editing" ng-click="editing = true; $parent.entry = false">
-        {{todo}}
-        <a ng-click="remove($index)">(x)</a>
-    </span>
-    <span ng-show="editing">
-        <form ng-submit="editing = false; edit($index, todo)">
-            <input type="text" ng-model="todo" focus="{{editing}}">
+<table class="table table-striped">
+    <thead>
+    <th>ID</th>
+    <th>Task</th>
+    <th>Operation</th>
+    </thead>
+    <tr ng-repeat="todo in todos">
+        <td>{{$index}}</td>
+        <td>
+            <span ng-hide="editing" ng-click="editing = true; $parent.entry = false">
+                {{todo}}
+            </span>
+            <span ng-show="editing">
+                <form ng-submit="editing = false; edit($index, todo)">
+                    <input type="text" ng-model="todo" focus="{{editing}}">
+                </form>
+            </span>
+        </td>
+        <td>
             <a ng-click="remove($index)">(x)</a>
-        </form>
-    </span>
-</div>
+        </td>
+    </tr>
+</table>
+
 
 <form ng-submit="submit()">
     <input type="text" ng-model="text" focus="{{entry}}">
