@@ -19,7 +19,9 @@ Some notes for me
     docker login
     docker push mlesniak/spray
     
+On the server execute
     
+    docker pull mlesniak/spray; docker stop spray; docker rm spray; docker run -d -p 8080:8080 --name spray mlesniak/spray
 
 ### Mulitple profiles
 
