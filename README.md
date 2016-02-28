@@ -21,7 +21,7 @@ Some notes for me
     
 On the server execute
     
-    docker pull mlesniak/spray; docker stop spray; docker rm spray; docker run -d -p 8080:8080 --name spray mlesniak/spray
+    docker pull mlesniak/sprnay; docker stop spray; docker rm spray; docker run -d -p 8080:8080 --name spray mlesniak/spray
 
 ### Mulitple profiles
 

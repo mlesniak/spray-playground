@@ -10,36 +10,11 @@
 </head>
 <body ng-controller="MainCtrl">
 
-<h1>TODO</h1>
+<h1>A picture a day...</h1>
 
-<table class="table table-striped">
-    <thead>
-    <th>ID</th>
-    <th>Task</th>
-    <th>Operation</th>
-    </thead>
-    <tr ng-repeat="todo in todos">
-        <td>{{$index}}</td>
-        <td>
-            <span ng-hide="editing" ng-click="editing = true; $parent.entry = false">
-                {{todo}}
-            </span>
-            <span ng-show="editing">
-                <form ng-submit="editing = false; edit($index, todo)">
-                    <input type="text" ng-model="todo" focus="{{editing}}">
-                </form>
-            </span>
-        </td>
-        <td>
-            <a ng-click="remove($index)">(x)</a>
-        </td>
-    </tr>
-</table>
-
-
-<form ng-submit="submit()">
-    <input type="text" ng-model="text" focus="{{entry}}">
-</form>
+<video id="video" width="640" height="480" autoplay></video>
+<button id="snap">Snap Photo</button>
+<canvas id="canvas" width="640" height="480"></canvas>
 
 </body>
 </html>

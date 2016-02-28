@@ -47,3 +47,34 @@ mainApp.controller('MainCtrl', function ($scope, $http) {
 
     $scope.entry = true;
 });
+
+window.addEventListener("DOMContentLoaded", function () {
+    // Grab elements, create settings, etc.
+    var canvas = document.getElementById("canvas"),
+        context = canvas.getContext("2d"),
+        video = document.getElementById("video"),
+        videoObj = {"video": true},
+        errBack = function (error) {
+            console.log("Video capture error: ", error.code);
+        };
+
+    // Put video listeners into place
+    if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+        navigator.webkitGetUserMedia(videoObj, function (stream) {
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+        }, errBack);
+    }
+
+    document.getElementById("snap").addEventListener("click", function () {
+        context.drawImage(video, 0, 0, 640, 480);
+    });
+
+    // Converts canvas to an image.
+    // Temporary.
+    window.convertCanvasToImage = function (canvas) {
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        return image;
+    }
+}, false);
