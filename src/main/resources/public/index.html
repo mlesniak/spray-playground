@@ -21,9 +21,12 @@
 </div>
 
 <hr/>
+<div ng-repeat="(key,todo) in todos">
+    {{$index}} - {{todo}} <a ng-click="remove($index)">(x)</a>
+</div>
+
 <form ng-submit="submit()">
     <input type="text" ng-model="text" autofocus="autofocus">
-
 </form>
 
 {{text}}
