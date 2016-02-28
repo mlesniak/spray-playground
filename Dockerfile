@@ -1,4 +1,4 @@
-FROM        java:8-jdk
+FROM        anapsix/alpine-java:jre
 MAINTAINER  Michael Lesniak <mlesniak@micromata.de>
 
 ADD         target/scala-2.11/spray-playground-assembly-1.0.jar application.jar
